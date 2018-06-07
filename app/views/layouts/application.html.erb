@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>OTPverification</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    
+  </head>
+
+  <body>
+    <% if user_signed_in? %>
+      <%= link_to "logout", destroy_user_session_path%>
+      <%= link_to "account settings",edit_user_registration_path%>
+    <% else %>
+      <%= link_to "sign_up",new_user_registration_path%>
+      <%= link_to "sign in",new_user_session_path%>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>

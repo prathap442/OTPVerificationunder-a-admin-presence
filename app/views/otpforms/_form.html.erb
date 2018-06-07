@@ -1,0 +1,27 @@
+<%= form_with(model: otpform, local: true) do |form| %>
+  <% if otpform.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(otpform.errors.count, "error") %> prohibited this otpform from being saved:</h2>
+
+      <ul>
+      <% otpform.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :mobile %>
+    <%= form.text_field :mobile %>
+  </div>
+
+  <div class="field">
+    <%= form.label :otp_recived %>
+    <%= form.text_field :otp_received %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

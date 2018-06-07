@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Mobile:</strong>
+  <%= @otpform.mobile %>
+</p>
+
+<p>
+  <strong>Otp received:</strong>
+  <%= @otpform.otp_received %>
+</p>
+OTP verification is done successfully 
+<%= link_to 'Edit', edit_otpform_path(@otpform) %> |
+<%= link_to 'Back', otpforms_path %>
