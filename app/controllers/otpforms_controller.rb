@@ -17,7 +17,7 @@ class OtpformsController < ApplicationController
   # GET /otpforms/new
   def new
     @otpform = Otpform.new
-    binding.pry
+    
     @otpform.user_id = current_user.id
   end
 
@@ -53,23 +53,23 @@ class OtpformsController < ApplicationController
   # PATCH/PUT /otpforms/1.json
   def update
     @otpform = Otpform.find(params[:id])
-    binding.pry 
+     
     @otpform.update_attributes(otpform_params)
     respond_to do |format|
       @customer = current_user.customers.where(mobile: @otpform.mobile).first 
       if(@otpform.otp_received==@customer.otpsent)
-        binding.pry
+        
         @customer.update_attributes(verified: true)
         if ((@otpform.save) && (@customer.verified))
           format.html { redirect_to @otpform, notice:'Otpform was successfully created' }
           format.json { render :show, status: :created, location: @otpform }
         else
-          binding.pry
+          
           format.html { render :new }
           format.json { render json: @otpform.errors, status: :unprocessable_entity }
         end
       else
-        binding.pry
+        
         format.html { render :new, notice: 'Otpform has received unsuccessful parameters'}
         format.json { render json: @otpform.errors, status: :unprocessable_entity } 
       end

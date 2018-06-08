@@ -30,12 +30,10 @@ class CustomersController < ApplicationController
     @customer.user_id = current_user.id
     respond_to do |format|
       if @customer.save
-        binding.pry
         @customer.update_attributes(otpsent: generate_otp({"mobile"=> @customer.mobile})) 
         @otpform = Otpform.new(mobile: @customer.mobile)
         format.html { redirect_to new_otpform_path(@otpform), notice: 'Please enter the otp sent to your mobile' }
         format.json { render :show, status: :created, location: @customer }
-        binding.pry
       else
         format.html { render :new }
         format.json { render json: @customer.errors, status: :unprocessable_entity }
@@ -80,7 +78,7 @@ class CustomersController < ApplicationController
     def generate_otp(hash)
       otp = Random.rand(594034..9304930943)
       p hash[:mobile]
-      binding.pry
+      
       response = HTTParty.get("https://smsapi.engineeringtgr.com/send/?Mobile=9972339927&Password=renault&Key=pmoha2ZgFoiDJqKMyjXEdT&Message=Hi%20bro&To=9448804242")
       p JSON.parse(response.body)
       return otp 
