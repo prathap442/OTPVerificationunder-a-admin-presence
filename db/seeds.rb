@@ -5,3 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+50.times do 
+  Company.create(name: Faker::Name.first_name,sharenumber: Random.rand(4..5),value: Random.rand(100..700))
+end

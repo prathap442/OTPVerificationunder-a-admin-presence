@@ -5,7 +5,7 @@ class OtpformsController < ApplicationController
   # GET /otpforms
   # GET /otpforms.json
   def index
-    @otpforms = Otpform.all
+    @otpforms = current_user.otpforms
   end
 
   # GET /otpforms/1
